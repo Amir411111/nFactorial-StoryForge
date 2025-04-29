@@ -7,7 +7,7 @@
 ## Демонстрационное Видео
 
 [➡️ Посмотреть Демо Видео  ⬅️]
-
+https://youtu.be/EViCCutKTM4?si=-PlvLYiIMGlxjsU9
 
 ---
 
