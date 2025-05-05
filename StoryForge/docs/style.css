@@ -1,0 +1,405 @@
+/* --- Базовые стили страницы --- */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- Основной контейнер приложения --- */
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- Стили заголовков --- */
+h1, h2, h3, h4 {
+    color: #5a3e8d;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* --- Управление видимостью экранов --- */
+.screen {
+    padding: 15px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Индикатор загрузки --- */
+.loading {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #777;
+    background-color: #f9f9f9;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* --- Общие стили элементов форм --- */
+input[type="text"],
+textarea,
+select {
+    width: calc(100% - 22px); /* Учитывание padding и border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em; /* Единообразие размера шрифта */
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical; /* Разрешение изменять высоту */
+}
+
+/* --- Общие стили кнопок --- */
+button {
+    background-color: #7e57c2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px 5px 5px 0; /* Отступы вокруг кнопки */
+    transition: background-color 0.2s ease; /* Плавный переход цвета */
+    font-size: 1em;
+}
+
+button:hover:not(:disabled) { /* Эффект при наведении (если кнопка не отключена) */
+    background-color: #5a3e8d;
+}
+
+button:disabled { /* Стиль отключенной кнопки */
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- Стили специфичных кнопок --- */
+button.back-button { /* Кнопка "Назад" */
+    background-color: #666;
+    margin-bottom: 15px;
+}
+button.back-button:hover:not(:disabled) {
+    background-color: #444;
+}
+
+button.remove-chapter-btn, /* Кнопки удаления (глава, действие) */
+button.remove-action-btn {
+    background-color: #e57373;
+    font-size: 0.8em;
+    padding: 5px 8px;
+}
+button.remove-chapter-btn:hover:not(:disabled),
+button.remove-action-btn:hover:not(:disabled) {
+    background-color: #d32f2f;
+}
+
+button.set-start-chapter-btn { /* Кнопка "Сделать стартовой" */
+    background-color: #66bb6a;
+    font-size: 0.8em;
+    padding: 5px 8px;
+    margin-left: 10px;
+}
+button.set-start-chapter-btn:hover:not(:disabled) {
+    background-color: #43a047;
+}
+
+#save-playthrough-btn { /* Кнопка сохранения прохождения */
+    background-color: #42a5f5; 
+}
+#save-playthrough-btn:hover:not(:disabled) {
+    background-color: #1e88e5;
+}
+
+button.copy-link-btn { /* Кнопка копирования ссылки */
+    background-color: #bdbdbd; 
+    font-size: 0.8em;
+    padding: 3px 6px;
+    margin-left: 10px;
+    vertical-align: middle; /* Выравнивание по центру */
+}
+button.copy-link-btn:hover:not(:disabled) {
+    background-color: #757575;
+}
+
+/* --- Стили списка историй --- */
+#stories-container .story-item { /* Отдельный элемент истории */
+    background-color: #e8eaf6;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+#stories-container .story-item:hover {
+    background-color: #c5cae9;
+}
+#stories-container .story-item h3 { /* Заголовок истории */
+    margin: 0 0 5px 0;
+    color: #3f51b5;
+}
+#stories-container .story-item p { /* Текст автора */
+    margin: 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* --- Стили редактора историй --- */
+.chapter-editor { /* Контейнер одной главы в редакторе */
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fafafa; 
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+.chapter-editor.start-chapter { /* Стиль стартовой главы */
+    border-left: 5px solid #7e57c2; /* Фиолетовая полоса слева */
+    background-color: #f3e5f5; 
+}
+.chapter-editor > div:first-of-type { /* Контейнер для ID и кнопки "Старт" */
+    display: flex; /* Расположение в строку */
+    align-items: center; /* Выровнивание по центру */
+    gap: 10px; /* Промежуток между элементами */
+    margin-bottom: 10px;
+}
+.chapter-editor > div:first-of-type input { /* Поле ввода ID */
+    flex-grow: 1; /* Занятие доступного места */
+    margin-bottom: 0;
+}
+#chapters-container h3 button.add-chapter-btn { /* Кнопка "+" для добавления главы */
+    font-size: 0.8em;
+    padding: 2px 6px;
+    margin-left: 10px;
+    vertical-align: middle;
+    line-height: 1; /* Убрание лишней высоты */
+}
+
+.chapter-editor h4 { /* Заголовок "Действия" */
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.action-editor { /* Контейнер одного действия в редакторе */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding: 8px;
+    background: #f0f0f0; 
+    border-radius: 3px;
+}
+.action-editor input[type="text"] { /* Поля ввода в редакторе действия */
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+/* --- Стили экрана чтения и финала --- */
+#reader-content, #final-content { /* Общий контейнер для текста и действий */
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+}
+#reader-actions-container button { /* Кнопки выбора действия при чтении */
+    display: block; /* Каждая кнопка на новой строке */
+    width: 100%; /* Занятие всей ширины */
+    margin-bottom: 10px;
+    text-align: left; /* Текст слева */
+    background-color: #9fa8da; 
+    box-sizing: border-box;
+}
+#reader-actions-container button:hover:not(:disabled) {
+    background-color: #7986cb;
+}
+
+/* --- Стили сообщений (статус, ошибки) --- */
+.message, #final-save-status, #editor-message, #nickname-error, #view-playthrough-error, .tts-status-message {
+    /* Общие стили для всех сообщений */
+    font-size: 0.9em;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    display: block;
+    box-sizing: border-box;
+    min-height: 1em; /* Резервирация высоты, чтобы блок не прыгал */
+    color: inherit; /* Наследование цвета по умолчанию */
+    background-color: transparent;
+    border: none;
+}
+
+/* Стили для сообщений разного типа */
+#final-save-status[style*="color: green"], /* Успех */
+#editor-message[style*="color: green"],
+.message.success {
+    color: #2e7d32; background-color: #e8f5e9; border: 1px solid #a5d6a7;
+}
+#final-save-status[style*="color: red"], /* Ошибка */
+#editor-message[style*="color: red"],
+.tts-status-message[style*="color: red"], /* Ошибки TTS */
+#view-playthrough-error:not(:empty), /* Ошибка просмотра (если не пуста) */
+#nickname-error:not(:empty), /* Ошибка ника (если не пуста) */
+.message.error {
+    color: #c62828; background-color: #ffebee; border: 1px solid #ef9a9a;
+}
+#final-save-status[style*="color: orange"], /* Ожидание/Предупреждение */
+#editor-message[style*="color: orange"],
+.message.pending {
+    color: #ef6c00; background-color: #fff3e0; border: 1px solid #ffcc80;
+}
+/* Информационные сообщения TTS (не ошибки) */
+.tts-status-message:not(:empty):not([style*="color: red"]) {
+     color: #666;
+     padding: 8px; 
+}
+
+/* --- Ссылка на просмотр прохождения на финальном экране --- */
+#final-save-status a.playthrough-link {
+    display: block; /* На новой строке */
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+/* --- Кнопки AI в редакторе --- */
+.ai-buttons {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.ai-buttons button { /* Стиль кнопок AI */
+    font-size: 0.8em;
+    padding: 4px 8px;
+    background-color: #80deea; 
+    margin-right: 5px;
+}
+.ai-buttons button:hover:not(:disabled) {
+    background-color: #26c6da;
+}
+
+/* --- Стили экрана просмотра прохождения --- */
+#view-playthrough-screen h2 {
+    margin-bottom: 10px;
+}
+#view-playthrough-render-area { /* Область для генерации картинки */
+    background-color: #ffffff; 
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+#view-playthrough-details p { /* Параграфы с деталями */
+    margin-bottom: 8px;
+}
+#view-playthrough-details h3 { /* Заголовок "Путь" */
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 3px;
+}
+#view-formatted-path ol { /* Нумерованный список пути */
+    padding-left: 20px;
+    margin-top: 5px;
+    list-style-type: decimal; 
+}
+#view-formatted-path li { /* Элемент списка пути */
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+#view-formatted-path li b { /* Выделение слова "Финал" */
+    color: #5a3e8d;
+}
+
+/* --- Кнопки скачивания и шаринга на экране просмотра --- */
+#download-image-btn { /* Кнопка "Скачать как изображение" */
+    margin-top: 15px;
+    background-color: #66bb6a; 
+}
+#download-image-btn:hover:not(:disabled) {
+    background-color: #43a047;
+}
+.share-buttons { /* Контейнер кнопок "Поделиться" */
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+.share-buttons a { /* Общий стиль кнопок-ссылок */
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white !important; 
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: opacity 0.2s ease;
+}
+.share-buttons a.share-twitter { background-color: #1DA1F2; } 
+.share-buttons a.share-telegram { background-color: #0088cc; } 
+.share-buttons a:hover { opacity: 0.8; }
+
+
+/* --- Стили элементов управления TTS (Text-to-Speech) --- */
+.tts-controls { /* Общий контейнер для контролов TTS */
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc; /* Разделитель */
+}
+
+.tts-controls h4 { /* Заголовок секции TTS */
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #5a3e8d;
+}
+
+.tts-options { /* Контейнер для выбора голоса */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tts-options label { /* Метка "Голос:" */
+     flex-shrink: 0; /* Не сжимать метку */
+}
+
+.tts-options select { /* Выпадающий список голосов */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1; /* Занять доступное место */
+    background-color: white; /* Фон на случай перекрытия */
+    width: auto; /* Переопределение базового стиля */
+    margin-bottom: 0; /* Убрание лишнего отступа */
+}
+
+.tts-buttons button { /* Кнопки Play/Stop */
+    font-size: 0.9em;
+    padding: 8px 12px;
+}
+
+#tts-play-btn, #tts-final-play-btn { /* Кнопки Play */
+    background-color: #4caf50; 
+}
+#tts-play-btn:hover:not(:disabled), #tts-final-play-btn:hover:not(:disabled) {
+    background-color: #388e3c;
+}
+
+#tts-stop-btn, #tts-final-stop-btn { /* Кнопки Stop */
+    background-color: #f44336; 
+}
+#tts-stop-btn:hover:not(:disabled), #tts-final-stop-btn:hover:not(:disabled) {
+    background-color: #d32f2f;
+}
